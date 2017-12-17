@@ -14,6 +14,7 @@ public class SimpleGameOfLife implements GameOfLife {
     @Override
     public List<String> play(String inputFile) {
         try {
+
             List<String> str = Utils.readFile(inputFile);
             String[] options = (str.get(0)).split(" ");
             n = Integer.parseInt(options[0]);
@@ -22,10 +23,14 @@ public class SimpleGameOfLife implements GameOfLife {
 
             frame = Utils.init(str, n);
             int l = 0;
+            long startTime = System.nanoTime();
+
             while (l < cycles) {
                 frame = evaluate(n, cycles, frame);
                 l++;
             }
+            long endTime = System.nanoTime();
+            System.out.println("Time: " + String.valueOf((endTime-startTime)/1000));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

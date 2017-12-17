@@ -38,23 +38,7 @@ public class ComplexGameOfLife implements GameOfLife {
         main.start();
 
         byte[][] frame = main.getFrame();
-        for (int i = 0; i < frame.length; i++) {
-            System.out.println("\n");
-            for (int j = 0; j < frame.length; j++) {
-                System.out.print(frame[i][j]);
-            }
-        }
-        return null;
+        return Utils.byteArrayToString(frame);
     }
-
-
-    public static void main(String[] args) {
-        ComplexGameOfLife complexGameOfLife= new ComplexGameOfLife(3);
-        complexGameOfLife.play("C:\\Users\\Stepan\\Downloads\\gameoflife\\gameoflife\\src\\test\\resources\\input.txt");
-
-    }
-
-
-
 
 }

@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by Stepan on 17.12.2017.
  */
@@ -30,30 +28,30 @@ public class MainFrame  {
 
     public void createStructure() {
         points = new int[partitions];
-        ArrayList<IntPair> pair = new ArrayList<>();
+        ArrayList<IntPair> pair = new ArrayList<IntPair>(partitions);
 
-        for (int i = 0; i < n; i += points.length) {
-//            for (int j = 0; j < n; j+= points.length) {
+        for (int i = 0; i < n; i += n/points.length) {
                 pair.add(new IntPair(i,0));
-//            }
         }
 
         for (int i = 0; i < partitions; i++) {
             listNodes.add(new ComplexFrame(n/partitions , n, cycles,
                     pair.get(i).getX(), pair.get(i).getY(), n));
+            System.out.println("added");
         }
     }
 
     public void start(){
-        boolean mainFlag = false;
         List<Boolean> bool = new ArrayList<>();
-        int k = 0;
+        int k = 1;
 
         for (ComplexFrame listNode : listNodes) {
             listNode.setFrame(frame);
             listNode.setFlag(false);
             listNode.start();
+            System.out.println("Threads are started");
         }
+        long startTime = System.nanoTime();
 
         while(!isContinued){
             bool.clear();
@@ -62,9 +60,6 @@ public class MainFrame  {
             }
 
             if(check(bool)){
-                System.out.println("______");
-                System.out.println("K - " + k);
-                System.out.println(")_____");
                 if(k == cycles){
                     for (ComplexFrame listNode : listNodes) {
                         byte[][] partOfFrame = listNode.getSmallFrame();
@@ -74,6 +69,8 @@ public class MainFrame  {
                         listNode.close();
                     }
                     isContinued = true;
+                    long endTime = System.nanoTime();
+                    System.out.println("Time: " + String.valueOf((endTime-startTime)/1000));
                 }
                 for (ComplexFrame listNode : listNodes) {
                     byte[][] partOfFrame = listNode.getSmallFrame();

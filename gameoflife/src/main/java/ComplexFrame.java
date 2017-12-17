@@ -44,7 +44,6 @@ public class ComplexFrame {
     }
 
     public byte[][] doSmth() {
-        System.out.println(Thread.currentThread().getName() + " try to do smth");
         newFrame = new byte[height][width];
         for (int i = x; i < x + height; i++) {
             for (int j = y; j < y + width; j++) {
