@@ -13,17 +13,17 @@ public class ComplexGameOfLifeTest {
 
     @org.junit.Test
     public void testGame1() throws Exception {
-        testOneGame("src\\test\\resources\\input.txt", "src\\test\\resources\\output.txt", 9);
+        testOneGame("src\\test\\resources\\input.txt", "src\\test\\resources\\output.txt", 1);
     }
 
     @Test
     public void testGame2() throws Exception {
-        testOneGame("src\\test\\resources\\input100.txt", "src\\test\\resources\\output100.txt", 4);
+        testOneGame("src\\test\\resources\\input100.txt", "src\\test\\resources\\output100.txt", 100);
     }
 
     @Test
     public void testGame3() throws Exception {
-        testOneGame("src\\test\\resources\\input1000.txt", "src\\test\\resources\\output1000.txt", 1000);
+        testOneGame("src\\test\\resources\\input1000.txt", "src\\test\\resources\\output1000.txt", 100);
     }
 
     private void testOneGame(String inputFile, String expectedOutputFile, int partitions) throws FileNotFoundException {
